@@ -1,47 +1,53 @@
-﻿// Written by Nicolas
-// 1/28
+﻿//written by nicolas
+//1/28
+//The Triangle Farmer
 
-using System;
 
-public class Clocktower
+using System.Security.Cryptography.X509Certificates;
+
+public class AreaCalculator
 {
-    // Class variable
-    private int number = -1;
-    // Gets & Sets
-    public int Number
-    {
-        get {return this.number;}
-        set {this.number = value;}
-    }
-    // Full constructor
-    public Clocktower(int _number)
-    {
-        number = _number;
-    }
+    private double triangleBase = -1;
+    private double triangleHeight = -1;
 
-    // Empty constructor
-    public Clocktower() : this(-1) {}
-
-    // Methods
-    public string TickOrTock()
+    //gets and sets
+    public double TriangleBase
     {
-        if(number % 2 == 0)
-        {return "tik";}
-        else
-        {return "tok";}
+        get{return this.triangleBase;}
+        set{this.triangleBase = value;}
+    }
+    public double TriangleHeight
+    {
+        get{return this.triangleHeight;}
+        set{this.triangleHeight = value;}
+    }
+    //full constructor
+    public AreaCalculator(double _triangleBase, double _triangleHeight)
+    {
+        triangleBase = _triangleBase;
+        triangleHeight = _triangleHeight;
+
+    }
+    // empty constructor
+    public AreaCalculator() : this(-1, -1) {}
+
+    public double FindArea(double triangleBase, double triangleHeight)
+    {
+        return (triangleBase * triangleHeight)/2;
     }
 
     public override string ToString()
     {
-        return TickOrTock();
+        return $"Area : {FindArea(this.TriangleBase, this.TriangleHeight)} square units\n";
     }
-
     public static void Main()
     {
-        Console.WriteLine("Enter a number to power the clock:");
-        int input = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("What is the triangle's base?");
+        double triangleBase = Convert.ToDouble(Console.ReadLine());
+        Console.WriteLine("Whate is the triangle's height?");
+        double triangleHeight = Convert.ToDouble(Console.ReadLine());
 
-        Clocktower clock = new Clocktower(input);
-        Console.WriteLine(clock);
+        AreaCalculator triangle = new AreaCalculator(triangleBase, triangleHeight);
+        Console.WriteLine(triangle);
     }
 }
